@@ -50,7 +50,9 @@ typedef enum {
     AUDIO_STREAM_ENFORCED_AUDIBLE = 7, /* Sounds that cannot be muted by user and must be routed to speaker */
     AUDIO_STREAM_DTMF             = 8,
     AUDIO_STREAM_TTS              = 9,
-
+#ifdef QCOM_HARDWARE
+    AUDIO_STREAM_INCALL_MUSIC     = 10,
+#endif
     AUDIO_STREAM_CNT,
     AUDIO_STREAM_MAX              = AUDIO_STREAM_CNT - 1,
 } audio_stream_type_t;
@@ -509,9 +511,10 @@ typedef enum {
     //Qualcomm Flags
     AUDIO_OUTPUT_FLAG_LPA = 0x1000,      // use LPA
     AUDIO_OUTPUT_FLAG_TUNNEL = 0x2000,   // use Tunnel
-    AUDIO_OUTPUT_FLAG_VOIP_RX = 0x4000   // use this flag in combination with DIRECT to
+    AUDIO_OUTPUT_FLAG_VOIP_RX = 0x4000,  // use this flag in combination with DIRECT to
                                          // indicate HAL to activate EC & NS
                                          // path for VOIP calls
+    AUDIO_OUTPUT_FLAG_INCALL_MUSIC = 0x8000 //use this flag for incall music delivery
 #endif
 } audio_output_flags_t;
 
